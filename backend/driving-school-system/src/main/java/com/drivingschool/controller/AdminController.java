@@ -13,23 +13,18 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    // Constructor Injection
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
-
-    // =========================
+    
     // LIST ADMINS
-    // =========================
     @GetMapping("/list")
     public String listAdmins(Model model) {
         model.addAttribute("admins", adminService.getAllAdmins());
         return "admin/list";
     }
 
-    // =========================
     // SHOW REGISTER FORM
-    // =========================
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("admin", new Admin());
@@ -37,9 +32,7 @@ public class AdminController {
         return "admin/register";
     }
 
-    // =========================
     // REGISTER ADMIN (CREATE)
-    // =========================
     @PostMapping("/register")
     public String registerAdmin(@ModelAttribute Admin admin,
                                 @RequestParam String role) {
@@ -50,9 +43,7 @@ public class AdminController {
         return "redirect:/admin/list";
     }
 
-    // =========================
     // SHOW EDIT FORM
-    // =========================
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable String id, Model model) {
 
@@ -68,9 +59,7 @@ public class AdminController {
         return "admin/edit";
     }
 
-    // =========================
     // UPDATE ADMIN
-    // =========================
     @PostMapping("/edit")
     public String updateAdmin(@ModelAttribute Admin admin,
                               @RequestParam String role) {
@@ -81,18 +70,14 @@ public class AdminController {
         return "redirect:/admin/list";
     }
 
-    // =========================
     // DELETE ADMIN
-    // =========================
     @GetMapping("/delete/{id}")
     public String deleteAdmin(@PathVariable String id) {
         adminService.deleteAdmin(id);
         return "redirect:/admin/list";
     }
 
-    // =========================
     // SEARCH ADMIN
-    // =========================
     @GetMapping("/search")
     public String searchAdmin(@RequestParam String name, Model model) {
         model.addAttribute("admins", adminService.searchByName(name));
