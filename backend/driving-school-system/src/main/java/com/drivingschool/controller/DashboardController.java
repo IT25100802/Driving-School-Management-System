@@ -11,7 +11,7 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
 
-        // session check
+        
         if (!UserSession.getInstance().isLoggedIn()) {
             return "redirect:/login";
         }
@@ -19,6 +19,6 @@ public class DashboardController {
         model.addAttribute("userName", UserSession.getInstance().getUserName());
         model.addAttribute("role", UserSession.getInstance().getRole());
 
-        return "auth/dashboard"; // MUST MATCH FILE LOCATION
+        return "auth/dashboard";
     }
 }
