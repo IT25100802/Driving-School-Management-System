@@ -17,13 +17,13 @@ public class AuthController {
         this.adminService = adminService;
     }
 
-    // ================= LOGIN PAGE =================
+    // LOGIN PAGE
     @GetMapping("/login")
     public String loginPage() {
         return "auth/login";
     }
 
-    // ================= LOGIN PROCESS =================
+    // LOGIN PROCESS
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
@@ -51,7 +51,7 @@ public class AuthController {
         return "auth/login";
     }
 
-    // ================= SIGNUP PAGE =================
+    // SIGNUP PAGE
     @GetMapping("/signup")
     public String signupPage(Model model) {
         model.addAttribute("roles", Role.values());
@@ -59,7 +59,7 @@ public class AuthController {
         return "auth/signup";
     }
 
-    // ================= SIGNUP PROCESS =================
+    // SIGNUP PROCESS
     @PostMapping("/signup")
     public String signup(@ModelAttribute Admin admin,
                          @RequestParam String role,
@@ -81,14 +81,14 @@ public class AuthController {
         return "redirect:/login";
     }
 
-    // ================= LOGOUT =================
+    // LOGOUT
     @GetMapping("/logout")
     public String logout() {
         UserSession.getInstance().logout();
         return "redirect:/login";
     }
 
-    // ================= HOME =================
+    // HOME
     @GetMapping("/")
     public String home() {
         return "redirect:/login";
